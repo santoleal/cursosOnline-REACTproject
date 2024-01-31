@@ -1,27 +1,14 @@
-import React, { useState } from 'react'
+import React from "react";
 
-const Contador = () => {
-
-const [contador, setContador] = useState(0);
-
-const sumar = () => {
-    setContador(contador + 1)
-}
-
-const restar = () => {
-  setContador(contador -1)
-}
-
+const Contador = ( { contador, sumar, restar, agregarCurso }) => {
   return (
-    <>
-    <h2>Contador</h2>
-    <h4>Número: {contador}</h4>
-    <button onClick={sumar}>Agregar</button>
-    <button onClick={restar}>Sacar</button>
+    <div>
+      <button onClick={sumar}>Sumar</button>
+      <h3>{contador}</h3>
+      <button onClick={restar}>Restar</button>
+      <button onClick={()=> agregarCurso(contador)}>Agregar al carrito</button>
+    </div>
+  );
+};
 
-
-    </>
-  )
-}
-
-export default Contador
+export default Contador;
