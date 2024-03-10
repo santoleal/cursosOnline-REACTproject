@@ -1,13 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { cursos } from "../../../assets/data/listaCursos";
 import ItemDetail from "./ItemDetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
 
 const ItemDetailContainer = () => {
   
   const [cursoSeleccionado, setCursoSeleccionado] = useState( {} )
 
   const {id} = useParams()
+
+  const {addToCart, obtenerCantidadById} = useContext(CartContext)
+
+  let cantidadTotal = obtenerCantidadById(+id)
+
+  console.log(cantidadTotal)
+
+  const navegar = useNavigate();
   
 
   useEffect(() => {
@@ -29,11 +38,19 @@ const ItemDetailContainer = () => {
     let objetoCurso = {
       ...cursoSeleccionado,
       cantidad: cantidad,
+
     }
+
+    addToCart( objetoCurso)
     console.log("Este es el curso a comprar: ",objetoCurso)
+
+    // navegar("/carrito")
+
+
+
   }
 
-  return <ItemDetail cursoSeleccionado={cursoSeleccionado} agregarCurso={agregarCurso} />;
+  return <ItemDetail cursoSeleccionado={cursoSeleccionado} agregarCurso={agregarCurso} initial={cantidadTotal} />;
 };
 
 export default ItemDetailContainer;

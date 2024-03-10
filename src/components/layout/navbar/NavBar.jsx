@@ -139,8 +139,6 @@ const NavBar = ({
         </Link>
       </Container>
 
-
-      <Outlet />
     </>
   );
 };

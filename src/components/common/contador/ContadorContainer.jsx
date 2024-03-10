@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Contador from "./Contador"
 
-const ContadorContainer = ( {cupos, agregarCurso} ) => {
+const ContadorContainer = ( {cupos, agregarCurso, initial=1} ) => {
 
- const [ contador, setContador] = useState(0)
+ const [ contador, setContador] = useState(initial)
 
 
  const sumar = () => {
@@ -23,7 +23,7 @@ const ContadorContainer = ( {cupos, agregarCurso} ) => {
 
 
     return (
- <Contador contador = {contador} sumar = {sumar} restar = {restar} agregarCurso={agregarCurso} />
+ <Contador contador = {contador} sumar = {sumar} restar = {restar} agregarCurso ={agregarCurso} />
   )
 }
 

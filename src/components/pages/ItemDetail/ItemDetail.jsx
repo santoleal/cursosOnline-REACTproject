@@ -2,7 +2,7 @@ import React from "react";
 import ContadorContainer from "../../common/contador/ContadorContainer";
 import { Box, Typography } from "@mui/material";
 
-const ItemDetail = ({ cursoSeleccionado, agregarCurso }) => {
+const ItemDetail = ({ cursoSeleccionado, agregarCurso, initial }) => {
   return (
     <Box sx={{ bgcolor: '#cfe8fc', width: '50%', margin: 'auto', textAlign: 'center', padding: '20px'  }}>
         <img src={cursoSeleccionado.img} alt="" />
@@ -23,7 +23,12 @@ const ItemDetail = ({ cursoSeleccionado, agregarCurso }) => {
         <br />
         -Tags: {cursoSeleccionado.tags}
       </Typography>
-      <ContadorContainer cupos={cursoSeleccionado.cupos} agregarCurso={agregarCurso} />
+
+      {
+        initial && <h5>Ya tienes {initial} cupos registrados</h5>
+      }
+
+      <ContadorContainer cupos={cursoSeleccionado.cupos} agregarCurso={agregarCurso} initial={initial} />
     </Box>
   );
 };

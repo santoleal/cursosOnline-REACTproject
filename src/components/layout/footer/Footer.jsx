@@ -5,7 +5,6 @@ const Footer = () => {
   return (
 
     <>
-    <Outlet/>
     <footer>
     <h3
       style={{
