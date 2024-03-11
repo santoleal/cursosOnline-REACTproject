@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Contador from "./Contador"
+import Swal from "sweetalert2"
 
 const ContadorContainer = ( {cupos, agregarCurso, initial=1} ) => {
 
@@ -11,7 +12,7 @@ const ContadorContainer = ( {cupos, agregarCurso, initial=1} ) => {
     if (contador < cupos){
         setContador(contador + 1)}
         else {
-            alert("Ha llegado a la cantidad máxima de stock")
+            Swal.fire("Ha llegado a la cantidad máxima de cupos a comprar.")
         }
  }
 
