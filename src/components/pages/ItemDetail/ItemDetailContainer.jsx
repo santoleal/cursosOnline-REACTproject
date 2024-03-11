@@ -3,6 +3,9 @@ import { cursos } from "../../../assets/data/listaCursos";
 import ItemDetail from "./ItemDetail";
 import { useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
+import Swal from "sweetalert2";
+import { collection, doc, getDoc } from "@firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const ItemDetailContainer = () => {
   
@@ -12,7 +15,7 @@ const ItemDetailContainer = () => {
 
   const {addToCart, obtenerCantidadById} = useContext(CartContext)
 
-  let cantidadTotal = obtenerCantidadById(+id)
+  let cantidadTotal = obtenerCantidadById(id)
 
   console.log(cantidadTotal)
 
@@ -20,16 +23,18 @@ const ItemDetailContainer = () => {
   
 
   useEffect(() => {
-    let curso = cursos.find((item2) => item2.id === +id);
+    let cursoColeccion = collection(db, "cursos"); 
 
-    const obtenerCurso = new Promise((resolve, reject) => {
-      resolve(curso);
-      // reje ct(error);
-    });
+    let obtenerDoc = doc(cursoColeccion, id)
 
-    obtenerCurso
-      .then((res) => setCursoSeleccionado(res))
-      .catch((err) => console.log("Estos son los errores: " + { err })).finally(() => console.log("Finalizó la promesa") );
+    getDoc(obtenerDoc).then((res) => {
+      if (res.exists()) {
+        setCursoSeleccionado({ ...res.data(), id: res.id });
+      } else {
+        console.log("No existe el documento");
+      }
+    } );
+  
   }, [id]);
 
 
@@ -43,6 +48,14 @@ const ItemDetailContainer = () => {
 
     addToCart( objetoCurso)
     console.log("Este es el curso a comprar: ",objetoCurso)
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: ("Has añadido correctamente."),
+      showConfirmButton: false,
+      timer: 1500
+    });
 
     // navegar("/carrito")
 

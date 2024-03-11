@@ -1,8 +1,18 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
+import Swal from "sweetalert2";
 import * as Yup from "yup";
+import { db } from "../../../firebaseConfig";
+import { addDoc, collection } from "@firebase/firestore";
+import { useState } from "react";
+
+
 
 const CheckoutFormik = () => {
+
+  const [pedidoId, setPedidoId] = useState(null);
+
+
   const { handleChange, handleSubmit, errors } = useFormik({
     initialValues: {
       nombre: "",
@@ -12,6 +22,9 @@ const CheckoutFormik = () => {
     },
     onSubmit: (info) => {
       console.log(info);
+      const pedidosColeccion = collection(db, "pedidos");
+
+      addDoc(pedidosColeccion, info).then((res) => setPedidoId(res.id));
     },
 
     validateOnChange: false,
@@ -21,58 +34,85 @@ const CheckoutFormik = () => {
       email: Yup.string().email("Email inválido. Debe contener @ y extensión").required("Campo requerido"),
       telefono: Yup.number().required("Campo requerido"),
     }),
-  });
+  }  
+  );
 
   console.log(errors);
 
   return (
-    <div style={{ padding: "50px" }}>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Nombre"
-          variant="filled"
-          name="nombre"
-          onChange={handleChange}
-          error={errors.nombre ? true : false}
-          helperText={errors.nombre}
-        />
+    <div style={{ padding: "50px", margin: "auto"}}>
+      {
+        pedidoId ? (
+          
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Pedido realizado con éxito. Ya nos contactaremos! Serie de pedido: ",
+            showConfirmButton: true,
+            timer: 5500,
+          })
+        ) : (
 
-        <TextField
-          label="Apellido"
-          variant="filled"
-          name="apellido"
-          onChange={handleChange}
-          error={errors.apellido ? true : false}
-          helperText={errors.apellido}
-        />
-        <TextField
-          label="Email"
-          variant="filled"
-          name="email"
-          onChange={handleChange}
-          error={errors.email ? true : false}
-          helperText={errors.email}
-        />
-        <TextField
-          label="Teléfono"
-          variant="filled"
-          name="telefono"
-          onChange={handleChange}
-          error={errors.telefono ? true : false}
-          helperText={errors.telefono}
+          <form onSubmit={handleSubmit}>
+      <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ maxWidth: '70%', margin: 'auto' }}>
+          <Grid item xs={12} md={6}> 
+            <TextField
+              label="Nombre"
+              variant="filled"
+              name="nombre"
+              onChange={handleChange}
+              error={errors.nombre ? true : false}
+              helperText={errors.nombre}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Apellido"
+              variant="filled"
+              name="apellido"
+              onChange={handleChange}
+              error={errors.apellido ? true : false}
+              helperText={errors.apellido}
+            />
+          </Grid>
 
-        />
+          <Grid item xs={12} >            
+            <TextField
+              label="Email"
+              variant="filled"
+              name="email"
+              onChange={handleChange}
+              error={errors.email ? true : false}
+              helperText={errors.email}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Teléfono"
+              variant="filled"
+              name="telefono"
+              onChange={handleChange}
+              error={errors.telefono ? true : false}
+              helperText={errors.telefono}
+            />
+          </Grid>
 
-        <Button variant="contained" type="submit">
-          Enviar
-        </Button>
-        <Button variant="outlined" type="button">
-          Cancelar
-        </Button>
-        <Button variant="outlined" type="button">
-          Limpiar Formulario
-        </Button>
-      </form>
+        <Grid item xs={12}>
+          <Button variant="contained" type="submit">
+            Enviar
+          </Button>
+          <Button variant="outlined" type="button">
+            Cancelar
+          </Button>
+          <Button variant="outlined" type="button">
+            Limpiar Formulario
+          </Button>
+          </Grid>
+      </Grid>
+      </form> )
+
+
+      }
     </div>
   );
 };

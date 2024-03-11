@@ -5,15 +5,21 @@ export const CartContext = createContext()
 const CartContextComponent = ({children}) => {
 
 
-    const [cart, setCart] = useState( [] )
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []) 
 
     const addToCart = (product) => {
         let exist = isInCart(product.id)
 
-        exist ? (
-            setCart(cart.map((elemento) => (
-                elemento.id === product.id ? {...elemento, cantidad: product.cantidad} :  elemento ))) 
-                ) : ( setCart( [...cart, product])) }
+        if (exist) {
+            let nuevoArreglo = cart.map((elemento) => (
+                elemento.id === product.id ? {...elemento, cantidad: product.cantidad} :  elemento ))
+            setCart(nuevoArreglo)
+            localStorage.setItem('cart', JSON.stringify(nuevoArreglo) 
+                )} else {
+                    setCart( [...cart, product])
+                    localStorage.setItem('cart', JSON.stringify([...cart, product]) 
+                    )
+                } }
 
     const isInCart = (id) => {
         let exist = cart.some( elemento => elemento.id === id )
@@ -27,11 +33,15 @@ const CartContextComponent = ({children}) => {
 
     const limpiarCarrito = () => {
         setCart([])
+        localStorage.removeItem('cart') 
+
     }
 
     const borrarCursoById = (id) => {
-        setCart(cart.filter(elemento => elemento.id !== id))
-
+        let borrarArreglo = cart.filter(elemento => elemento.id !== id)
+        setCart(borrarArreglo)
+        localStorage.setItem('cart', JSON.stringify(borrarArreglo) 
+        )           
     }
 
     const obtenerPrecioTotal = () => {
@@ -43,6 +53,8 @@ const CartContextComponent = ({children}) => {
         let totalCuposPorCurso = cart.reduce((acumulador, elemento) => acumulador + elemento.cantidad, 0)
         return totalCuposPorCurso
     }
+
+
 
     let data = {cart, addToCart, obtenerCantidadById, limpiarCarrito, borrarCursoById, obtenerPrecioTotal, obtenerTotalCuposPorCurso}
 

@@ -1,43 +1,59 @@
 import { useEffect, useState } from "react";
-import { cursos } from "../../../assets/data/listaCursos";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import SkeletonCard from "../../common/skeletonCard/SkeletonCard";
+import { Container } from "@mui/material";
 
-// De la primer pre-entrega
-// const ItemListContainer = (gretting) => {
-//   return <>
-//   <h1>"Bienvenid@, {gretting.visitante}, a mi sitio de CursosOnline!"</h1>
-
-//   </>;
-// };
+import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
+import { cursos } from "../../../assets/data/listaCursos";
+import { Button } from "@mui/base";
 
 const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);  
+  const { tags } = useParams();
+  // const rellenarDB = () => {
+  //   const cursosColeccion = collection(db, "cursos");
 
-
-  const { tags } = useParams()
-  console.log(tags ? "Estoy filtrando" : "Estoy en home")
+  //   cursos.forEach((curso) => {
+  //     addDoc(cursosColeccion, curso);
+  //   }
+  //   );
+  // }
 
   useEffect(() => {
 
-    // // Esto es para recordar cómo llamar desde una api
-    // const mostrarCursosDesdeApi = fetch("api")
-    // mostrarCursosDesdeApi.then().catch()
+    let cursosColeccion = collection(db, "cursos");
+    let consulta = undefined
 
-    const cursosFiltrados = cursos.filter( (curso) => curso.tags === tags )
+    if (!tags) {  
+      consulta = cursosColeccion;
+    }  else {
 
-    const mostrarCursos = new Promise((resolve) => {
-      resolve(tags ? cursosFiltrados : cursos );
-    });
+    consulta = query(cursosColeccion, where("tags", "==", tags));
 
-    mostrarCursos
-      .then((res) => setItems(res))
-      .catch((error) => console.log(error));
-  }, [ tags ]);
+    } 
+    getDocs(consulta).then((res) => {
+      const nuevoAreglo = res.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      })
+      setItems(nuevoAreglo);
+    }
+    );
+  }, [tags]);
 
   console.log(items);
 
-  return <ItemList items={items} />;
+  return <>
+  {/* <Button onClick={rellenarDB}>Rellenar DB</Button> */}
+  {items.length === 0 ? (<div>
+            <Container> 
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </Container>
+  </div>) : <ItemList items={items} />}</>;
 };
 
 export default ItemListContainer;
