@@ -47,7 +47,7 @@ const ItemListContainer = () => {
   return <>
   {/* <Button onClick={rellenarDB}>Rellenar DB</Button> */}
   {items.length === 0 ? (<div>
-            <Container> 
+            <Container sx={{ display: "flex", padding: "30px"}}> 
               <SkeletonCard />
               <SkeletonCard />
               <SkeletonCard />

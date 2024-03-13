@@ -2,20 +2,17 @@
 
 ## Este e un proyecto de la cursada de REACT JS dic-ene 2024.
 
-### Se irán actualizando las mejoras de un sitio web orientado a capacitaciones e-learning.
+### Web-app orientada a capacitaciones e-learning.
 
 ## Detalles:
 
-<<<<<<< HEAD
 - GIF con muestra del proyecto.
-=======
 - Se optimiza el sistema de navegación, creando carpeta Router y mapeando para componetizar de mejor forma el proyecto.
 - Se implementa createContext
 - Se reemplaza el formulario checkout manual por las librerías Formik y YUP (validaciones)
 - Carrito del navbar lee total de productos a comprar.
-- Pendiente: Firebase
+- Uso de Firebase como gestor de bbdd remoto.
 
 ## GIF con muestra del proyecto.
->>>>>>> testeo
 
-[![Segunda PRe-Entrega (GIF con avances)](https://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/segunda_Pre-entrega_REACT.gif "Segunda PRe-Entrega (GIF con avances)")](httphttps://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/segunda_Pre-entrega_REACT.gif:// "Segunda PRe-Entrega (GIF con avances)")
+[![Entrega Final (GIF)](https://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif "Entrega Final (GIF)")](httphttps://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif:// "Entrega Final (GIF)")
