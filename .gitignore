@@ -1,3 +1,7 @@
+./src/firebaseConfig.js
+/src/firebaseConfig.js
+src/firebaseConfig.js
+
 # Logs
 logs
 *.log
@@ -24,4 +28,3 @@ dist-ssr
 *.sw?
 
 
-src/firebaseConfig.js
