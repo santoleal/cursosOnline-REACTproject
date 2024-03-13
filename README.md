@@ -12,6 +12,7 @@
 - Se reemplaza el formulario checkout manual por las librerías Formik y YUP (validaciones)
 - Carrito del navbar lee total de productos a comprar.
 - Uso de Firebase como gestor de bbdd remoto.
+- Se agrega mensaje de agradecimiento de compra + ID de pedido, para seguimiento.
 
 ## GIF con muestra del proyecto.
 
