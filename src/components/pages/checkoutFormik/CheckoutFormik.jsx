@@ -2,7 +2,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import * as Yup from "yup";
-import { db } from "../../../firebaseConfig";
+import { db } from "../../../firebaseConfiguracion";
 import { addDoc, collection } from "@firebase/firestore";
 import { useState } from "react";
 import { Link } from "react-router-dom";

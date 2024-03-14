@@ -5,7 +5,7 @@ import SkeletonCard from "../../common/skeletonCard/SkeletonCard";
 import { Container } from "@mui/material";
 
 import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
-import { db } from "../../../firebaseConfig";
+import { db } from "../../../firebaseConfiguracion";
 import { cursos } from "../../../assets/data/listaCursos";
 import { Button } from "@mui/base";
 

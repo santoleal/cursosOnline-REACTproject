@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
 import Swal from "sweetalert2";
 import { collection, doc, getDoc } from "@firebase/firestore";
-import { db } from "../../../firebaseConfig";
+import { db } from "../../../firebaseConfiguracion";
 
 const ItemDetailContainer = () => {
   
