@@ -29,4 +29,4 @@
 
 ## Link con Deploy Web-App:
 
-- #### [Web-App de Cursos Online](https://cursos-online-reac-tproject.vercel.app){:target="_blank"}
+- #### [Web-App de Cursos Online](https://cursos-online-reac-tproject.vercel.app)
