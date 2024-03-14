@@ -27,6 +27,6 @@
 
 [![Entrega Final (GIF)](https://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif "Entrega Final (GIF)")](httphttps://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif:// "Entrega Final (GIF)")
 
-## Link con Deploy:
+## Link con Deploy Web-App:
 
-[![Web-App de Cursos Online ](https://cursos-online-reac-tproject.vercel.app/ "Web-App de Cursos Online")](https://cursos-online-reac-tproject.vercel.app:// "Web-App de Cursos Online")
+- #### [Web-App de Cursos Online](https://cursos-online-reac-tproject.vercel.app){:target="_blank"}
