@@ -16,11 +16,17 @@
 ## Tecnologías utilizadas:
 
 - React
+- Vite
 - MaterialUI
 - Firebase
 - Formik
 - Yup
+- Deploy en Vercel
 
 ## GIF con muestra del proyecto.
 
 [![Entrega Final (GIF)](https://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif "Entrega Final (GIF)")](httphttps://raw.githubusercontent.com/santoleal/cursosOnline-REACTproject/main/public/tercera_Entrega_Final_REACT.gif:// "Entrega Final (GIF)")
+
+## Link con Deploy:
+
+[![Web-App de Cursos Online ](https://cursos-online-reac-tproject.vercel.app/ "Web-App de Cursos Online")](https://cursos-online-reac-tproject.vercel.app:// "Web-App de Cursos Online")
