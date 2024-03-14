@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { db } from "../../../firebaseConfig";
 import { addDoc, collection } from "@firebase/firestore";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -20,11 +21,35 @@ const CheckoutFormik = () => {
       email: "",
       telefono: "",
     },
-    onSubmit: (info) => {
-      console.log(info);
-      const pedidosColeccion = collection(db, "pedidos");
+    onSubmit: async (info) => {
 
-      addDoc(pedidosColeccion, info).then((res) => setPedidoId(res.id));
+      try {
+        
+        console.log(info);
+        const pedidosColeccion = collection(db, "pedidos");
+  
+        const docReferencia = await addDoc(pedidosColeccion, info)
+        setPedidoId(docReferencia.id);
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Pedido realizado con éxito. Ya nos contactaremos! Serie de pedido: " + docReferencia.id,
+          showConfirmButton: true,
+          timer: 5500,
+        });
+
+        
+
+      } catch (error) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.",
+          showConfirmButton: true,
+        });
+        
+      }
     },
 
     validateOnChange: false,
@@ -34,23 +59,30 @@ const CheckoutFormik = () => {
       email: Yup.string().email("Email inválido. Debe contener @ y extensión").required("Campo requerido"),
       telefono: Yup.number().required("Campo requerido"),
     }),
+
   }  
   );
+  
 
-  console.log(errors);
+  const handleCancelar = () => {
+    Swal.fire({
+      position: "center",
+      icon: "info",
+      title: "Has suspendido tu compra. Puedes volver al carrito para concretar nuevamente.",
+      showConfirmButton: true,
+    });
+  }
+
 
   return (
     <div style={{ padding: "50px", margin: "auto"}}>
       {
         pedidoId ? (
+          <div>
+          <h2>Pedido realizado con éxito. Ya nos contactaremos! Serie de pedido: {pedidoId}</h2>
+          <Link to="/"><Button variant="contained">Volver al inicio</Button> </Link>
+          </div>
           
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Pedido realizado con éxito. Ya nos contactaremos! Serie de pedido: ",
-            showConfirmButton: true,
-            timer: 5500,
-          })
         ) : (
 
           <form onSubmit={handleSubmit}>
@@ -101,12 +133,10 @@ const CheckoutFormik = () => {
           <Button variant="contained" type="submit">
             Enviar
           </Button>
-          <Button variant="outlined" type="button">
+          <Link to="/"><Button variant="outlined" type="button" onClick={handleCancelar}>
             Cancelar
-          </Button>
-          <Button variant="outlined" type="button">
-            Limpiar Formulario
-          </Button>
+          </Button></Link>
+
           </Grid>
       </Grid>
       </form> )

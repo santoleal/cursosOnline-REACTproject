@@ -6,13 +6,20 @@
 
 ## Detalles:
 
-- GIF con muestra del proyecto.
-- Se optimiza el sistema de navegación, creando carpeta Router y mapeando para componetizar de mejor forma el proyecto.
-- Se implementa createContext
-- Se reemplaza el formulario checkout manual por las librerías Formik y YUP (validaciones)
+- Se optimizó el sistema de navegación, creando carpeta Router y mapeando para componetizar de mejor forma el proyecto.
+- Se implementa createContext.
+- Se reemplaza el formulario checkout manual por las librerías Formik y YUP (validaciones).
 - Carrito del navbar lee total de productos a comprar.
 - Uso de Firebase como gestor de bbdd remoto.
 - Se agrega mensaje de agradecimiento de compra + ID de pedido, para seguimiento.
+
+## Tecnologías utilizadas:
+
+- React
+- MaterialUI
+- Firebase
+- Formik
+- Yup
 
 ## GIF con muestra del proyecto.
 

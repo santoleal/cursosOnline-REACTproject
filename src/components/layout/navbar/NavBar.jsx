@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link, Outlet } from "react-router-dom";
 
 const NavBar = ({
-  pages,
+  // pages,
   anchorElNav,
   handleOpenNavMenu,
   handleCloseNavMenu,
@@ -66,11 +66,11 @@ const NavBar = ({
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {/* {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
               </Menu>
             </Box>
 
@@ -96,7 +96,7 @@ const NavBar = ({
             <Box
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, px: 5 }}
             >
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
@@ -106,7 +106,7 @@ const NavBar = ({
                     <Typography variant="h4">{page}</Typography>
                   </MenuItem>
                 </Button>
-              ))}
+              ))} */}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
