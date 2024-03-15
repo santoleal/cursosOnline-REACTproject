@@ -1,8 +1,7 @@
 import ItemDetailContainer from "../components/pages/ItemDetail/ItemDetailContainer";
 import ItemListContainer from "../components/pages/ItemList/ItemListContainer";
-import Cart from "../components/pages/cart/Cart";
-import CheckoutContainer from "../components/pages/checkout/CheckoutContainer";
 import CheckoutFormik from "../components/pages/checkoutFormik/CheckoutFormik";
+import Cart from "../components/pages/cart/Cart";
 
 export const rutas = [
   {

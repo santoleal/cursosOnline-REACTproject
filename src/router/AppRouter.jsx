@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import { NavBarContainer } from "../components/layout/navbar/NavBarContainer"
-import Footer from "../components/layout/footer/Footer"
 import Layout from "../components/layout/Layout"
-import { rutas } from "./menuRouter"
 import { useFormik } from "formik"
 
+import { rutas } from "./menuRouter"
 
 const AppRouter = () => {
 

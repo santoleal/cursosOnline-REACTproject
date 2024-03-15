@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
+
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
 import SkeletonCard from "../../common/skeletonCard/SkeletonCard";
 import { Container } from "@mui/material";
-
 import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfiguracion";
-import { cursos } from "../../../assets/data/listaCursos";
-import { Button } from "@mui/base";
+
+
 
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);  

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { cursos } from "../../../assets/data/listaCursos";
-import ItemDetail from "./ItemDetail";
+
 import { useNavigate, useParams } from "react-router-dom";
-import { CartContext } from "../../../context/CartContext";
+import ItemDetail from "./ItemDetail";
 import Swal from "sweetalert2";
+import { CartContext } from "../../../context/CartContext";
 import { collection, doc, getDoc } from "@firebase/firestore";
 import { db } from "../../../firebaseConfiguracion";
 
@@ -17,9 +17,6 @@ const ItemDetailContainer = () => {
 
   let cantidadTotal = obtenerCantidadById(id)
 
-  console.log(cantidadTotal)
-
-  const navegar = useNavigate();
   
 
   useEffect(() => {
@@ -57,7 +54,6 @@ const ItemDetailContainer = () => {
       timer: 1500
     });
 
-    // navegar("/carrito")
 
 
 
